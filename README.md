@@ -36,7 +36,7 @@ npm run test
 
 ## Author
 
-* Github: [@mhd53,  @PatrickVuscan](https://github.com/mhd53, https://github.com/PatrickVuscan)
+* Github: [@mhd53](https://github.com/mhd53), [@PatrickVuscan](https://github.com/PatrickVuscan)
 
 ## Show your support
 
