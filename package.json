@@ -1,0 +1,45 @@
+{
+    "name": "assignment-1-65-patrickvuscan-mohammaddarabi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/csc301-fall-2020/assignment-1-65-patrickvuscan-mohammaddarabi.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/csc301-fall-2020/assignment-1-65-patrickvuscan-mohammaddarabi/issues"
+    },
+    "homepage": "https://github.com/csc301-fall-2020/assignment-1-65-patrickvuscan-mohammaddarabi#readme",
+    "dependencies": {},
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.2.0",
+        "@typescript-eslint/parser": "^4.2.0",
+        "eslint": "^7.10.0",
+        "eslint-config-prettier": "^6.12.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.21.2",
+        "husky": "^4.3.0",
+        "lint": "^0.7.0",
+        "lint-staged": "^10.4.0",
+        "prettier": "^2.1.2",
+        "typescript": "^4.0.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx}": [
+            "eslint --fix"
+        ]
+    }
+}
