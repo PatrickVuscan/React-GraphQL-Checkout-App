@@ -16,3 +16,15 @@ export async function setupServer(): Promise<ServerSetup> {
         request: request,
     };
 }
+export async function sendQuery(query: string, request: supertest.SuperTest<supertest.Test>): Promise<any> {
+    const res = await request
+        .post('/')
+        .set({
+            Accept: 'application/json',
+        })
+        .send({ query })
+        .expect(200)
+        .expect('Content-Type', 'application/json');
+
+    return res;
+}

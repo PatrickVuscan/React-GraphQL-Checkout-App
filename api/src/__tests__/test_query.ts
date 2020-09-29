@@ -1,9 +1,9 @@
 import supertest = require('supertest');
-import { setupServer } from '../utils/test_utils';
+import { setupServer, sendQuery } from '../utils/test_utils';
 
 let request: supertest.SuperTest<supertest.Test>;
 
-describe('Testing GraphQL Query resolvers via Post requests: ', () => {
+describe('Testing GraphQL Query resolvers via GET requests: ', () => {
     beforeAll(async () => {
         const serverSetup = await setupServer();
         request = serverSetup.request;
@@ -43,16 +43,3 @@ describe('Testing GraphQL Query resolvers via Post requests: ', () => {
         });
     });
 });
-
-async function sendQuery(query: string, request: supertest.SuperTest<supertest.Test>): Promise<any> {
-    const res = await request
-        .post('/')
-        .set({
-            Accept: 'application/json',
-        })
-        .send({ query })
-        .expect(200)
-        .expect('Content-Type', 'application/json');
-
-    return res;
-}

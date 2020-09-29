@@ -5,9 +5,9 @@ type Query {
 }
 
 type Mutation {
-    createItem(id: ID!, name: String, price: Float, discount: Float): Item
-    updateItem(id: ID!, name: String, price: Float, discount: Float): Item
-    deleteItem(id: ID!): Item
+    createItem(name: String!, price: Float!, discount: Float): Item!
+    updateItem(id: ID!, name: String, price: Float, discount: Float): Item!
+    deleteItem(id: ID!): Item!
 }
 
 type Item {
