@@ -18,7 +18,7 @@ function start_test_runner {
   migrate_db
 
   echo "Starting test runner..."
-  DATABASE_URL=$db npx jest
+  DATABASE_URL=$db npx jest --coverage
   cleanup
 }
 
