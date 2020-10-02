@@ -3,9 +3,20 @@ import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import ShoppingAppBar from './../ShoppingAppBar/ShoppingAppBar';
 import Shop from './../Shop/Shop';
+import Checkout from './../Checkout/Checkout';
 
 export interface Cart {
-    [name: number]: number;
+    [id: number]: number;
+}
+
+export interface MappedProducts {
+    [id: number]: Product;
+}
+
+export interface Product {
+    id: number;
+    name: string;
+    price: number;
 }
 
 interface Props extends WithTheme {}
@@ -40,7 +51,9 @@ export const Routing = (props: Props) => {
                             <Route exact path="/">
                                 <Shop cart={cart} setCart={setCart} />
                             </Route>
-                            <Route path="/checkout">Checkout</Route>
+                            <Route path="/checkout">
+                                <Checkout cart={cart} setCart={setCart} />
+                            </Route>
                             {/* redirect to shopping page (home) by default */}
                             <Redirect to="/" />
                         </Switch>
