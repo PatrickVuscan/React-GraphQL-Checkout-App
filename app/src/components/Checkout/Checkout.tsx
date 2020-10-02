@@ -89,8 +89,6 @@ const Checkout = (props: Props) => {
         total += cart[id] * mappedProducts[id].price;
     }
 
-    console.log('new render', props);
-
     return (
         <>
             <Box height="100%" width="100%" display="flex" justifyContent="center" alignItems="center">

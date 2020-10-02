@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardActions, Grid, Typography, Button, IconButton } from '@material-ui/core';
+import { Box, Card, CardActions, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
 import { AddRounded, RemoveRounded } from '@material-ui/icons';
 import React from 'react';
 import { Cart } from '../Routing/Routing';
@@ -75,8 +75,6 @@ const Shop = (props: Props) => {
         }
     };
 
-    console.log('new render', props);
-
     return (
         <>
             <Grid container spacing={5} alignContent="space-around" alignItems="center" justify="center">
@@ -89,7 +87,7 @@ const Shop = (props: Props) => {
                                         {item.name}
                                     </Typography>
                                     <Typography align="center" variant="body1">
-                                        {`\$${item.price.toFixed(2)}`}
+                                        {`$${item.price.toFixed(2)}`}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>

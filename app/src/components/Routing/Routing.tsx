@@ -22,7 +22,13 @@ export interface Product {
 interface Props extends WithTheme {}
 
 export const Routing = (props: Props) => {
-    const [cart, setCart] = React.useState<Cart>({});
+    const [cart, setCart] = React.useState<Cart>(JSON.parse(sessionStorage.getItem('cart') || '{}'));
+
+    React.useEffect(() => {
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
+
+    console.log(cart);
 
     return (
         <Grid container direction="column" alignItems="stretch" alignContent="stretch" wrap="nowrap" className="h-100">
