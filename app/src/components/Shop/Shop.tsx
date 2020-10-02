@@ -82,15 +82,14 @@ const Shop = (props: Props) => {
             <Grid container spacing={5} alignContent="space-around" alignItems="center" justify="center">
                 {items.map((item) => {
                     return (
-                        <Grid item md key={item.id}>
+                        <Grid item xs={7} sm={5} md={4} key={item.id} style={{ height: '100%' }}>
                             <Card style={{ height: '100%' }}>
-                                <CardContent>
-                                    <Box pb={10}>
-                                        <Typography variant="h4">{item.name}</Typography>
-                                        <Typography variant="body1">{`\$${item.price.toFixed(2)}`}</Typography>
-                                    </Box>
-                                    <Typography variant="body1" gutterBottom>
-                                        Looks lovely doesnt it!
+                                <CardContent style={{ paddingBottom: 0 }}>
+                                    <Typography align="center" variant="h4">
+                                        {item.name}
+                                    </Typography>
+                                    <Typography align="center" variant="body1">
+                                        {`\$${item.price.toFixed(2)}`}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>

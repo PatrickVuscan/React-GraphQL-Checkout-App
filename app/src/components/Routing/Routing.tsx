@@ -30,7 +30,7 @@ export const Routing = (props: Props) => {
                 <Grid item xs>
                     <Container
                         component="main"
-                        maxWidth="sm"
+                        maxWidth="md"
                         style={{
                             height: '100%',
                             padding: props.theme.spacing(5),
