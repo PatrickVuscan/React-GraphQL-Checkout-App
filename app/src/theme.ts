@@ -79,7 +79,7 @@ const mainTheme = createMuiTheme({
         },
         h4: {
             fontFamily: 'Raleway',
-            fontWeight: 'bold',
+            fontWeight: 'normal',
             fontSize: 24,
         },
         h5: {

@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
-import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import ShoppingAppBar from './../ShoppingAppBar/ShoppingAppBar';
 
 interface Props {}
 
@@ -15,20 +16,19 @@ export const Routing = (props: Props) => {
             className="h-100"
             style={{ overflow: 'hidden' }}
         >
-            <Grid
-                item
-                className="sticky-top"
-                style={{
-                    position: '-webkit-sticky', // safari fix
-                    top: '0',
-                    zIndex: 1000,
-                }}
-            >
-                {/* <AppBar /> */}
-                <div>AppBar will go here</div>
-            </Grid>
-            <Grid item xs>
-                <Router>
+            <Router>
+                <Grid
+                    item
+                    className="sticky-top"
+                    style={{
+                        position: '-webkit-sticky', // safari fix
+                        top: '0',
+                        zIndex: 1000,
+                    }}
+                >
+                    <ShoppingAppBar />
+                </Grid>
+                <Grid item xs>
                     <Switch>
                         <Route exact path="/">
                             <div>
@@ -43,8 +43,8 @@ export const Routing = (props: Props) => {
                         {/* redirect to shopping page (home) by default */}
                         <Redirect to="/" />
                     </Switch>
-                </Router>
-            </Grid>
+                </Grid>
+            </Router>
         </Grid>
     );
 };
