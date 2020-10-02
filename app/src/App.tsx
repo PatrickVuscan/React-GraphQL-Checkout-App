@@ -1,29 +1,15 @@
+import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import Routing from './components/Routing/Routing';
+import mainTheme from './theme';
 
-function App() {
+const App = () => {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <div>
-                        <h1>Hello</h1>
-                    </div>
-                </Route>
-                <Route path="/about">
-                    <div>
-                        <h1>Test</h1>
-                    </div>
-                </Route>
-                <Route path="/dashboard">
-                    <div>
-                        <h1>Test</h1>
-                    </div>
-                </Route>
-            </Switch>
-        </Router>
+        <ThemeProvider theme={mainTheme}>
+            <Routing />
+        </ThemeProvider>
     );
-}
+};
 
 export default App;
