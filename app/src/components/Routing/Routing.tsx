@@ -1,21 +1,20 @@
-import { Grid } from '@material-ui/core';
+import { Container, Grid, withTheme, WithTheme } from '@material-ui/core';
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import ShoppingAppBar from './../ShoppingAppBar/ShoppingAppBar';
+import Shop from './../Shop/Shop';
 
-interface Props {}
+export interface Cart {
+    [name: number]: number;
+}
+
+interface Props extends WithTheme {}
 
 export const Routing = (props: Props) => {
+    const [cart, setCart] = React.useState<Cart>({});
+
     return (
-        <Grid
-            container
-            direction="column"
-            alignItems="stretch"
-            alignContent="stretch"
-            wrap="nowrap"
-            className="h-100"
-            style={{ overflow: 'hidden' }}
-        >
+        <Grid container direction="column" alignItems="stretch" alignContent="stretch" wrap="nowrap" className="h-100">
             <Router>
                 <Grid
                     item
@@ -29,24 +28,27 @@ export const Routing = (props: Props) => {
                     <ShoppingAppBar />
                 </Grid>
                 <Grid item xs>
-                    <Switch>
-                        <Route exact path="/">
-                            <div>
-                                <h1>This will be the shopping cart</h1>
-                            </div>
-                        </Route>
-                        <Route path="/checkout">
-                            <div>
-                                <h1>This will be the checkout</h1>
-                            </div>
-                        </Route>
-                        {/* redirect to shopping page (home) by default */}
-                        <Redirect to="/" />
-                    </Switch>
+                    <Container
+                        component="main"
+                        maxWidth="sm"
+                        style={{
+                            height: '100%',
+                            padding: props.theme.spacing(5),
+                        }}
+                    >
+                        <Switch>
+                            <Route exact path="/">
+                                <Shop cart={cart} setCart={setCart} />
+                            </Route>
+                            <Route path="/checkout">Checkout</Route>
+                            {/* redirect to shopping page (home) by default */}
+                            <Redirect to="/" />
+                        </Switch>
+                    </Container>
                 </Grid>
             </Router>
         </Grid>
     );
 };
 
-export default Routing;
+export default withTheme(Routing);
