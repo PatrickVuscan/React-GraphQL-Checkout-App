@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
 20200929203332-create-new-database
+20201003205231-move-to-heroku-psql
