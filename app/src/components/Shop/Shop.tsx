@@ -1,55 +1,20 @@
 import { Box, Card, CardActions, CardContent, Grid, IconButton, Typography } from '@material-ui/core';
 import { AddRounded, RemoveRounded } from '@material-ui/icons';
 import React from 'react';
+import { useQuery } from 'urql';
+
 import { Cart } from '../Routing/Routing';
 
-const items = [
-    {
-        id: 1,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 2,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 3,
-        name: 'Textbook',
-        price: 89.95,
-    },
-    {
-        id: 11,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 12,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 13,
-        name: 'Textbook',
-        price: 89.95,
-    },
-    {
-        id: 21,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 22,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 23,
-        name: 'Textbook',
-        price: 89.95,
-    },
-];
+const QUERY_ITEMS = `
+query {
+    items {
+      id
+      name
+      price
+      discount
+    }
+  }
+`;
 
 interface Props {
     cart: Cart;
@@ -58,6 +23,15 @@ interface Props {
 
 const Shop = (props: Props) => {
     const { cart, setCart } = props;
+
+    const [res, executeQuery] = useQuery({
+        query: QUERY_ITEMS,
+    });
+
+    const { data, fetching, error } = res;
+
+    if (fetching) return <div>Fetching...</div>;
+    if (error) return <div>Error...</div>;
 
     const addToCart = (id: number) => {
         setCart({
@@ -78,7 +52,7 @@ const Shop = (props: Props) => {
     return (
         <>
             <Grid container spacing={5} alignContent="space-around" alignItems="center" justify="center">
-                {items.map((item) => {
+                {data.items.map((item: any) => {
                     return (
                         <Grid item xs={7} sm={5} md={4} key={item.id} style={{ height: '100%' }}>
                             <Card style={{ height: '100%' }}>

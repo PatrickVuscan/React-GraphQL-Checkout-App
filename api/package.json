@@ -1,0 +1,29 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon",
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@prisma/client": "^2.8.0",
+        "graphql-yoga": "^1.18.3"
+    },
+    "devDependencies": {
+        "@prisma/cli": "^2.8.0",
+        "@types/graphql": "^14.5.0",
+        "@types/jest": "^26.0.14",
+        "@types/node": "^14.11.2",
+        "@types/supertest": "^2.0.10",
+        "jest": "^26.4.2",
+        "nodemon": "^2.0.4",
+        "supertest": "^5.0.0",
+        "ts-jest": "^26.4.0",
+        "ts-node": "^9.0.0"
+    }
+}
