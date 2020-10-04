@@ -29,8 +29,6 @@ const Shop = (props: Props) => {
         });
     };
 
-    console.log(data.items);
-
     const removeFromCart = (id: number) => {
         if (cart[id] && cart[id] > 0) {
             setCart({

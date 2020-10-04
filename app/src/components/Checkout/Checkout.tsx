@@ -4,6 +4,7 @@ import {
     Card,
     CardActions,
     CardContent,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
@@ -34,6 +35,8 @@ interface Props {
 const Checkout = (props: Props) => {
     const [checkingOut, setCheckingOut] = React.useState(false);
     const [purchased, setPurchased] = React.useState(false);
+    const [processing, setProcessing] = React.useState(false);
+
     const { cart, setCart } = props;
 
     const [res] = useQuery({
@@ -157,11 +160,13 @@ const Checkout = (props: Props) => {
                         variant="contained"
                         color="primary"
                         onClick={() => {
+                            setProcessing(true);
                             setTimeout(() => {
+                                setProcessing(false);
                                 setCheckingOut(false);
                                 setPurchased(true);
                                 setCart({});
-                            }, 1500);
+                            }, 2500);
                             setTimeout(() => {
                                 setPurchased(false);
                             }, 7000);
@@ -170,6 +175,27 @@ const Checkout = (props: Props) => {
                         Continue
                     </Button>
                 </DialogActions>
+            </Dialog>
+            <Dialog
+                open={processing}
+                onClose={() => {
+                    setProcessing(false);
+                }}
+                style={{ textAlign: 'center' }}
+            >
+                <DialogContent style={{ padding: 20 }}>
+                    <Box
+                        width="100%"
+                        display="flex"
+                        justifyContent="center"
+                        margin="0"
+                        onClick={() => {
+                            setCheckingOut(true);
+                        }}
+                    >
+                        <CircularProgress size={90} thickness={6} />
+                    </Box>
+                </DialogContent>
             </Dialog>
         </>
     );
