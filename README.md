@@ -5,6 +5,9 @@
 Git Commmit Messaging Standard:
 <http://karma-runner.github.io/0.10/dev/git-commit-msg.html>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 <h1 align="center">Welcome to Facile-Checkout 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
@@ -27,11 +30,44 @@ Git Commmit Messaging Standard:
 
 ### ✨ [Demo](github.io)
 
-## Install
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+## Running this project:
+
+Inside of the root folder, run
 
 ```sh
 npm install
 ```
+
+Then inside the root folder create a `.env` file and copy in:
+
+```
+SKIP_PREFLIGHT_CHECK=true
+```
+
+Afterwards, go into `api/prisma/`, and create another `.env` file with the contents:
+
+```
+DATABASE_URL=...
+```
+
+With a database URL provided by a project owner. Afterwards backout into the `api/` directory and call
+
+```sh
+npm install
+npm start
+```
+
+Then backout, and go into the `app/` directory, and once again call
+
+```sh
+npm install
+npm start
+```
+
+You should now be running the project locally.
 
 ## Run tests
 
