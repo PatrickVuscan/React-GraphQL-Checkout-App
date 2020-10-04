@@ -29,6 +29,8 @@ const Shop = (props: Props) => {
         });
     };
 
+    console.log(data.items);
+
     const removeFromCart = (id: number) => {
         if (cart[id] && cart[id] > 0) {
             setCart({
@@ -49,9 +51,14 @@ const Shop = (props: Props) => {
                                     <Typography align="center" variant="h4">
                                         {item.name}
                                     </Typography>
-                                    <Typography align="center" variant="body1">
+                                    <Typography align="center" variant={item.discount ? 'body2' : 'body1'}>
                                         {`$${item.price.toFixed(2)}`}
                                     </Typography>
+                                    {item.discount > 0 && (
+                                        <Typography align="center" variant="body1">
+                                            {`$${(item.price * (1 - item.discount)).toFixed(2)}`}
+                                        </Typography>
+                                    )}
                                 </CardContent>
                                 <CardActions>
                                     <Box display="flex" justifyContent="space-around" width="100%">
