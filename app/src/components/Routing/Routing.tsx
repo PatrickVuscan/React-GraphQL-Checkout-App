@@ -17,6 +17,7 @@ export interface Product {
     id: number;
     name: string;
     price: number;
+    discount: number;
 }
 
 interface Props extends WithTheme {}
@@ -27,8 +28,6 @@ export const Routing = (props: Props) => {
     React.useEffect(() => {
         sessionStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
-
-    console.log(cart);
 
     return (
         <Grid container direction="column" alignItems="stretch" alignContent="stretch" wrap="nowrap" className="h-100">

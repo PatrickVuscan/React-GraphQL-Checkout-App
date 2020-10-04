@@ -4,6 +4,7 @@ import {
     Card,
     CardActions,
     CardContent,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
@@ -13,18 +14,8 @@ import {
 import { CheckCircleRounded } from '@material-ui/icons';
 import React from 'react';
 import { useQuery } from 'urql';
-import { Cart, Product, MappedProducts } from '../Routing/Routing';
-
-const QUERY_ITEMS = `
-query {
-    items {
-      id
-      name
-      price
-      discount
-    }
-  }
-`;
+import { QUERY_ITEMS } from './../../api-calls/queries';
+import { Cart, MappedProducts, Product } from './../Routing/Routing';
 
 const mapProducts = (products: Array<Product>) => {
     const mappedProducts: MappedProducts = {};
@@ -44,9 +35,11 @@ interface Props {
 const Checkout = (props: Props) => {
     const [checkingOut, setCheckingOut] = React.useState(false);
     const [purchased, setPurchased] = React.useState(false);
+    const [processing, setProcessing] = React.useState(false);
+
     const { cart, setCart } = props;
 
-    const [res, executeQuery] = useQuery({
+    const [res] = useQuery({
         query: QUERY_ITEMS,
     });
 
@@ -57,10 +50,14 @@ const Checkout = (props: Props) => {
 
     const mappedProducts: MappedProducts = mapProducts(data.items);
 
-    let total = 0;
+    let discountedTotal = 0;
+    let nonDiscountedTotal = 0;
     for (let id in cart) {
-        total += cart[id] * mappedProducts[id].price;
+        nonDiscountedTotal += cart[id] * mappedProducts[id].price;
+        discountedTotal += cart[id] * (mappedProducts[id].price * (1 - mappedProducts[id].discount));
     }
+
+    const amountSaved = nonDiscountedTotal - discountedTotal;
 
     return (
         <>
@@ -74,12 +71,34 @@ const Checkout = (props: Props) => {
                                         Checkout
                                     </Typography>
                                 </Box>
-                                <Typography align="center" variant="body1">{`Total before tax: ${total.toFixed(
-                                    2,
-                                )}`}</Typography>
-                                <Typography align="center" variant="body1">{`Total after tax: ${(total * 1.13).toFixed(
-                                    2,
-                                )}`}</Typography>
+                                {nonDiscountedTotal > 0 ? (
+                                    <>
+                                        <Typography align="center" variant={amountSaved > 0 ? 'body2' : 'body1'}>
+                                            {`Total before tax: $${nonDiscountedTotal.toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant={amountSaved > 0 ? 'body2' : 'body1'}>
+                                            {`Total after tax: $${(nonDiscountedTotal * 1.13).toFixed(2)}`}
+                                        </Typography>
+                                    </>
+                                ) : (
+                                    <Typography align="center" variant="body1">
+                                        There is nothing in your shopping cart.
+                                    </Typography>
+                                )}
+                                {amountSaved > 0 && (
+                                    <>
+                                        <br></br>
+                                        <Typography align="center" variant="body1">
+                                            {`Discounted total before tax: $${discountedTotal.toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant="body1">
+                                            {`Discounted total after tax: $${(discountedTotal * 1.13).toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant="body1">
+                                            {`You saved $${discountedTotal.toFixed(2)}!`}
+                                        </Typography>
+                                    </>
+                                )}
                             </>
                         )}
                         {purchased && (
@@ -102,7 +121,7 @@ const Checkout = (props: Props) => {
                             </>
                         )}
                     </CardContent>
-                    {!purchased && (
+                    {!purchased && nonDiscountedTotal > 0 && (
                         <CardActions>
                             <Box
                                 width="100%"
@@ -149,11 +168,13 @@ const Checkout = (props: Props) => {
                         variant="contained"
                         color="primary"
                         onClick={() => {
+                            setProcessing(true);
                             setTimeout(() => {
+                                setProcessing(false);
                                 setCheckingOut(false);
                                 setPurchased(true);
                                 setCart({});
-                            }, 1500);
+                            }, 2500);
                             setTimeout(() => {
                                 setPurchased(false);
                             }, 7000);
@@ -162,6 +183,27 @@ const Checkout = (props: Props) => {
                         Continue
                     </Button>
                 </DialogActions>
+            </Dialog>
+            <Dialog
+                open={processing}
+                onClose={() => {
+                    setProcessing(false);
+                }}
+                style={{ textAlign: 'center' }}
+            >
+                <DialogContent style={{ padding: 20 }}>
+                    <Box
+                        width="100%"
+                        display="flex"
+                        justifyContent="center"
+                        margin="0"
+                        onClick={() => {
+                            setCheckingOut(true);
+                        }}
+                    >
+                        <CircularProgress size={90} thickness={6} />
+                    </Box>
+                </DialogContent>
             </Dialog>
         </>
     );

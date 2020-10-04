@@ -99,10 +99,11 @@ const mainTheme = createMuiTheme({
             fontFamily: 'Raleway',
         },
         body2: {
-            fontSize: 14,
+            textDecoration: 'line-through',
+            fontSize: 16,
             lineHeight: '120%',
             fontFamily: 'Raleway',
-            color: '#2E2E2E',
+            color: '#898989',
         },
         subtitle1: {
             fontSize: 24,
