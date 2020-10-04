@@ -47,10 +47,14 @@ const Checkout = (props: Props) => {
 
     const mappedProducts: MappedProducts = mapProducts(data.items);
 
-    let total = 0;
+    let discountedTotal = 0;
+    let nonDiscountedTotal = 0;
     for (let id in cart) {
-        total += cart[id] * mappedProducts[id].price;
+        nonDiscountedTotal += cart[id] * mappedProducts[id].price;
+        discountedTotal += cart[id] * (mappedProducts[id].price * (1 - mappedProducts[id].discount));
     }
+
+    const amountSaved = nonDiscountedTotal - discountedTotal;
 
     return (
         <>
@@ -64,12 +68,26 @@ const Checkout = (props: Props) => {
                                         Checkout
                                     </Typography>
                                 </Box>
-                                <Typography align="center" variant="body1">{`Total before tax: ${total.toFixed(
-                                    2,
-                                )}`}</Typography>
-                                <Typography align="center" variant="body1">{`Total after tax: ${(total * 1.13).toFixed(
-                                    2,
-                                )}`}</Typography>
+                                <Typography align="center" variant="body2">
+                                    {`Total before tax: $${nonDiscountedTotal.toFixed(2)}`}
+                                </Typography>
+                                <Typography align="center" variant="body2">
+                                    {`Total after tax: $${(nonDiscountedTotal * 1.13).toFixed(2)}`}
+                                </Typography>
+                                {amountSaved > 0 && (
+                                    <>
+                                        <br></br>
+                                        <Typography align="center" variant="body1">
+                                            {`Discounted total before tax: $${discountedTotal.toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant="body1">
+                                            {`Discounted total after tax: $${(discountedTotal * 1.13).toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant="body1">
+                                            {`You saved $${discountedTotal.toFixed(2)}!`}
+                                        </Typography>
+                                    </>
+                                )}
                             </>
                         )}
                         {purchased && (
