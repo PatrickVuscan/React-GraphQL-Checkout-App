@@ -24,7 +24,11 @@ const ShoppingAppBar = (props: Props) => {
                                 </Typography>
                             </Button>
                         </Grid>
-                        <Grid item xs />
+                        <Grid item xs>
+                            <Typography variant="h1" align="center" color="secondary">
+                                Facile Checkout
+                            </Typography>
+                        </Grid>
                         <Grid item>
                             <Button
                                 size="small"
