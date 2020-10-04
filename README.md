@@ -1,3 +1,10 @@
+<h1>CSC301</h1>
+<h2>Assignment 1</h2>
+<h3>Patrick Vuscan and Mohammad Darabi</h3>
+
+Git Commmit Messaging Standard:
+<http://karma-runner.github.io/0.10/dev/git-commit-msg.html>
+
 <h1 align="center">Welcome to Facile-Checkout 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
@@ -15,8 +22,6 @@
 > A simple checkout system
 
 <img src="_prototypes/01_facile_item_list.png" style="zoom:70%;" />
-
-
 
 ### 🏠 [Homepage](github.io)
 
@@ -36,12 +41,10 @@ npm run test
 
 ## Author
 
-* Github: [@mhd53](https://github.com/mhd53), [@PatrickVuscan](https://github.com/PatrickVuscan)
+-   Github: [@mhd53](https://github.com/mhd53), [@PatrickVuscan](https://github.com/PatrickVuscan)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
-
-
+---
