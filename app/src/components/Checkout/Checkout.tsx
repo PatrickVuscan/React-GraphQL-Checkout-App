@@ -71,12 +71,20 @@ const Checkout = (props: Props) => {
                                         Checkout
                                     </Typography>
                                 </Box>
-                                <Typography align="center" variant="body2">
-                                    {`Total before tax: $${nonDiscountedTotal.toFixed(2)}`}
-                                </Typography>
-                                <Typography align="center" variant="body2">
-                                    {`Total after tax: $${(nonDiscountedTotal * 1.13).toFixed(2)}`}
-                                </Typography>
+                                {nonDiscountedTotal > 0 ? (
+                                    <>
+                                        <Typography align="center" variant={amountSaved > 0 ? 'body2' : 'body1'}>
+                                            {`Total before tax: $${nonDiscountedTotal.toFixed(2)}`}
+                                        </Typography>
+                                        <Typography align="center" variant={amountSaved > 0 ? 'body2' : 'body1'}>
+                                            {`Total after tax: $${(nonDiscountedTotal * 1.13).toFixed(2)}`}
+                                        </Typography>
+                                    </>
+                                ) : (
+                                    <Typography align="center" variant="body1">
+                                        There is nothing in your shopping cart.
+                                    </Typography>
+                                )}
                                 {amountSaved > 0 && (
                                     <>
                                         <br></br>
@@ -113,7 +121,7 @@ const Checkout = (props: Props) => {
                             </>
                         )}
                     </CardContent>
-                    {!purchased && (
+                    {!purchased && nonDiscountedTotal > 0 && (
                         <CardActions>
                             <Box
                                 width="100%"
