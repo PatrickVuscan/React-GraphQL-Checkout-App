@@ -2,19 +2,8 @@ import { Box, Card, CardActions, CardContent, Grid, IconButton, Typography } fro
 import { AddRounded, RemoveRounded } from '@material-ui/icons';
 import React from 'react';
 import { useQuery } from 'urql';
-
-import { Cart } from '../Routing/Routing';
-
-const QUERY_ITEMS = `
-query {
-    items {
-      id
-      name
-      price
-      discount
-    }
-  }
-`;
+import { Cart } from './../Routing/Routing';
+import { QUERY_ITEMS } from './../../api-calls/queries';
 
 interface Props {
     cart: Cart;
@@ -24,7 +13,7 @@ interface Props {
 const Shop = (props: Props) => {
     const { cart, setCart } = props;
 
-    const [res, executeQuery] = useQuery({
+    const [res] = useQuery({
         query: QUERY_ITEMS,
     });
 

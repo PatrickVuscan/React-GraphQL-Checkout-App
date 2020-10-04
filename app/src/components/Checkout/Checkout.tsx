@@ -13,18 +13,8 @@ import {
 import { CheckCircleRounded } from '@material-ui/icons';
 import React from 'react';
 import { useQuery } from 'urql';
-import { Cart, Product, MappedProducts } from '../Routing/Routing';
-
-const QUERY_ITEMS = `
-query {
-    items {
-      id
-      name
-      price
-      discount
-    }
-  }
-`;
+import { QUERY_ITEMS } from './../../api-calls/queries';
+import { Cart, MappedProducts, Product } from './../Routing/Routing';
 
 const mapProducts = (products: Array<Product>) => {
     const mappedProducts: MappedProducts = {};
@@ -46,7 +36,7 @@ const Checkout = (props: Props) => {
     const [purchased, setPurchased] = React.useState(false);
     const { cart, setCart } = props;
 
-    const [res, executeQuery] = useQuery({
+    const [res] = useQuery({
         query: QUERY_ITEMS,
     });
 
