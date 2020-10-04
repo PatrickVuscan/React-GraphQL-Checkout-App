@@ -12,55 +12,19 @@ import {
 } from '@material-ui/core';
 import { CheckCircleRounded } from '@material-ui/icons';
 import React from 'react';
+import { useQuery } from 'urql';
 import { Cart, Product, MappedProducts } from '../Routing/Routing';
 
-const items = [
-    {
-        id: 1,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 2,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 3,
-        name: 'Textbook',
-        price: 89.95,
-    },
-    {
-        id: 11,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 12,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 13,
-        name: 'Textbook',
-        price: 89.95,
-    },
-    {
-        id: 21,
-        name: 'Pencil',
-        price: 2.5,
-    },
-    {
-        id: 22,
-        name: 'Eraser',
-        price: 1.25,
-    },
-    {
-        id: 23,
-        name: 'Textbook',
-        price: 89.95,
-    },
-];
+const QUERY_ITEMS = `
+query {
+    items {
+      id
+      name
+      price
+      discount
+    }
+  }
+`;
 
 const mapProducts = (products: Array<Product>) => {
     const mappedProducts: MappedProducts = {};
@@ -72,8 +36,6 @@ const mapProducts = (products: Array<Product>) => {
     return mappedProducts;
 };
 
-const mappedProducts: MappedProducts = mapProducts(items);
-
 interface Props {
     cart: Cart;
     setCart: Function;
@@ -83,6 +45,17 @@ const Checkout = (props: Props) => {
     const [checkingOut, setCheckingOut] = React.useState(false);
     const [purchased, setPurchased] = React.useState(false);
     const { cart, setCart } = props;
+
+    const [res, executeQuery] = useQuery({
+        query: QUERY_ITEMS,
+    });
+
+    const { data, fetching, error } = res;
+
+    if (fetching) return <div>Fetching...</div>;
+    if (error) return <div>Error...</div>;
+
+    const mappedProducts: MappedProducts = mapProducts(data.items);
 
     let total = 0;
     for (let id in cart) {
