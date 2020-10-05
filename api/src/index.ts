@@ -1,8 +1,16 @@
 import { GraphQLServer } from 'graphql-yoga';
+import dotenv = require('dotenv');
 
 import { createContext } from './utils/context';
 import Query from './gql/resolvers/Query';
 import Mutation from './gql/resolvers/Mutation';
+
+dotenv.config();
+
+const server_options = {
+    port: Number(process.env.PORT),
+    deduplicator: true,
+};
 
 const resolvers = {
     Query,
@@ -26,7 +34,9 @@ function main() {
         (async () => {
             try {
                 const server = await app();
-                server.start(() => console.log(`Sever is running on http://localhost:4000`));
+                server.createHttpServer(server_options).listen(server_options.port, '0.0.0.0', () => {
+                    console.log(`Sever is running on http://${process.env.HOST}:${server_options.port}`);
+                });
             } catch (e) {
                 console.log(e);
             }
