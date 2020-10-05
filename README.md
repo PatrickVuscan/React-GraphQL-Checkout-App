@@ -26,9 +26,7 @@ Git Commmit Messaging Standard:
 
 <img src="_prototypes/01_facile_item_list.png" style="zoom:70%;" />
 
-### 🏠 [Homepage](github.io)
-
-### ✨ [Demo](github.io)
+### ✨ [Demo](https://facilecheckout.netlify.app/)
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
