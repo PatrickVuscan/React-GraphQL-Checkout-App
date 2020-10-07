@@ -2,8 +2,7 @@
 <h2>Assignment 1</h2>
 <h3>Patrick Vuscan and Mohammad Darabi</h3>
 
-Git Commmit Messaging Standard:
-<http://karma-runner.github.io/0.10/dev/git-commit-msg.html>
+<h5>Note that the Report is included in the root directory under A1-Report.pdf</h5>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -29,6 +28,12 @@ Git Commmit Messaging Standard:
 ### 🏠 [Homepage](github.io)
 
 ### ✨ [Demo](github.io)
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+Git Commmit Messaging Standard:
+<http://karma-runner.github.io/0.10/dev/git-commit-msg.html>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
