@@ -1,7 +1,7 @@
 import React from 'react';
 import { createClient, Provider } from 'urql';
 
-const URL = process.env.URL || 'http://localhost:4000';
+const URL = process.env.URL || 'https://facile-checkout-api-gx3qgkcolq-nn.a.run.app/';
 
 const client = createClient({
     url: URL,
