@@ -8,14 +8,12 @@ For the deployment docker was used to package the nodejs app for the API logic. 
 
 For the deployment of the database [Heroku](https://www.heroku.com/) was used in order to take advantage of their free-tier hobbiest Postgress database.
 
-Overall, getting the nodejs API to work with docker was more challenging than we first had imagined given that there were a few minor details that were needed be figured out. 
-
-
+Overall, getting the nodejs API to work with docker was more challenging than we first had imagined given that there were a few minor details that were needed be figured out.
 
 ## In Conclusion
 
 This was a great experience! - 2020/10/5 [@mhd53](https://github.com/mhd53)
 
 ### URL for Backend:
-[facileCheckoutAPI](https://facile-checkout-api-gx3qgkcolq-nn.a.run.app/)
 
+[facileCheckoutAPI](https://facile-checkout-api-gx3qgkcolq-nn.a.run.app/)

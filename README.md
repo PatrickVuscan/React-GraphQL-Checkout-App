@@ -1,13 +1,8 @@
-<h1>CSC301</h1>
-<h2>Assignment 1</h2>
+<h1>Welcome to Facile-Checkout 👋</h1>
 <h3>Patrick Vuscan and Mohammad Darabi</h3>
 
-<h5>Note that the Report is included in the root directory under A1-Report.pdf</h5>
-
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<h1 align="center">Welcome to Facile-Checkout 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/csc301-fall-2020/assignment-1-65-patrickvuscan-mohammaddarabi#readme" target="_blank">
@@ -24,6 +19,9 @@
 > A simple checkout system
 
 <img src="_prototypes/01_facile_item_list.png" style="zoom:70%;" />
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ### ✨ [Demo](https://facilecheckout.netlify.app/)
 
